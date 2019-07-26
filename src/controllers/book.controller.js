@@ -4,7 +4,11 @@ exports.findOne = (req, res, next) => {
   Book.findById(req.params.bookId)
     .then(book => {
       if (!book) res.status(404).json({ message: "Not found" });
-      else res.json(book);
+      else {
+        const returnedBook = book;
+        returnedBook.addedBy = undefined;
+        res.json(returnedBook);
+      }
     })
     .catch(error => next(error));
 };
@@ -15,7 +19,6 @@ exports.create = (req, res, next) => {
       .status(400)
       .json({ message: "Missing fields. Please include 'title' & 'author'" });
 
-  console.log(req.user.id);
   const book = new Book({
     title: req.body.title,
     author: req.body.author,

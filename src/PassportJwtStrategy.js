@@ -13,7 +13,7 @@ module.exports = new JwtStrategy(opts, (jwtPayload, done) => {
   User.findById(jwtPayload.sub)
     .then(user => {
       if (!user) return done(null, false);
-      return done(null, { id: user.id });
+      return done(null, user);
     })
     .catch(err => done(err, false));
 });

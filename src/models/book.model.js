@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 
+const { ObjectId } = mongoose.Schema.Types;
+
 const BookSchema = mongoose.Schema({
   title: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   author: {
     type: String,
@@ -18,6 +19,9 @@ const BookSchema = mongoose.Schema({
   },
   coverUrl: {
     type: String
+  },
+  addedBy: {
+    type: ObjectId
   }
 });
 
