@@ -1,0 +1,11 @@
+{
+  "name": "book",
+  "version": "0.1.0",
+  "description": "Book service for BookSwap.",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mihai Voinea <hi@voinea.me>",
+  "license": "MIT"
+}
