@@ -13,6 +13,15 @@ exports.findOne = (req, res, next) => {
     .catch(error => next(error));
 };
 
+// Retrieve all Books
+exports.findAll = (req, res, next) => {
+  Book.find()
+    .then(books => {
+      res.send(books);
+    })
+    .catch(error => next(error));
+};
+
 exports.create = (req, res, next) => {
   if (!req.body.title || !req.body.author)
     return res
