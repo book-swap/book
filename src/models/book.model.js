@@ -11,7 +11,7 @@ const BookSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  isbn: {
+  rating: {
     type: Number
   },
   description: {

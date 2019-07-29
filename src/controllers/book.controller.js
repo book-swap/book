@@ -22,6 +22,14 @@ exports.findAll = (req, res, next) => {
     .catch(error => next(error));
 };
 
+exports.findMyBooks = (req, res, next) => {
+  Book.find({ addedBy: req.user.id })
+    .then(books => {
+      res.send(books);
+    })
+    .catch(error => next(error));
+};
+
 exports.create = (req, res, next) => {
   if (!req.body.title || !req.body.author)
     return res
@@ -31,6 +39,7 @@ exports.create = (req, res, next) => {
   const book = new Book({
     title: req.body.title,
     author: req.body.author,
+    rating: req.body.rating,
     description: req.body.description,
     coverUrl: req.body.coverUrl,
     addedBy: req.user.id
