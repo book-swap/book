@@ -16,14 +16,33 @@ exports.findOne = (req, res, next) => {
 // Retrieve all Books
 exports.findAll = (req, res, next) => {
   Book.find()
+    .populate("addedBy")
     .then(books => {
       res.send(books);
     })
     .catch(error => next(error));
 };
 
+exports.deleteOne = (req, res, next) => {
+  Book.findById(req.params.bookId)
+    .then(book => {
+      if (!book) res.status(404).json({ message: "Not found" });
+      // eslint-disable-next-line eqeqeq
+      else if (book.addedBy == req.user.id)
+        try {
+          book.remove();
+          res.json({ message: "Removed" });
+        } catch (error) {
+          next(error);
+        }
+      else res.send(401);
+    })
+    .catch(error => next(error));
+};
+
 exports.findMyBooks = (req, res, next) => {
   Book.find({ addedBy: req.user.id })
+    .populate("addedBy")
     .then(books => {
       res.send(books);
     })

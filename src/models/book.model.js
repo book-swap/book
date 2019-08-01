@@ -21,7 +21,8 @@ const BookSchema = mongoose.Schema({
     type: String
   },
   addedBy: {
-    type: ObjectId
+    type: ObjectId,
+    ref: "User"
   }
 });
 
