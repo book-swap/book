@@ -6,7 +6,7 @@ exports.findOne = (req, res, next) => {
       if (!book) res.status(404).json({ message: "Not found" });
       else {
         const returnedBook = book;
-        returnedBook.addedBy = undefined;
+        // returnedBook.addedBy = undefined;
         res.json(returnedBook);
       }
     })
